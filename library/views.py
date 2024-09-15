@@ -71,7 +71,6 @@ class BookViewSet(viewsets.ModelViewSet):
         search_query = self.request.query_params.get('search', None)
         if search_query:
             search_query = str(search_query).strip()
-            print(search_query)
             queryset = queryset.filter(
                 Q(title__icontains=search_query) | Q(author_name__icontains=search_query)
             )
@@ -177,7 +176,6 @@ class FavoriteViewSet(viewsets.ModelViewSet):
 def recommended_books(request):
     user = request.user
     favorites = Favorite.objects.filter(user=user).order_by('-added_at')
-    print(favorites)
     recommended_books = []
     if not favorites:
         return Response({"message": "No favorites found"}, status=status.HTTP_400_BAD_REQUEST)
