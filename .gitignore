@@ -1,1 +1,6 @@
 venv/
+*.sqlite3
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
